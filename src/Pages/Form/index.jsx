@@ -21,7 +21,7 @@ function Form() {
           })
         );     
         setInputs({ ...inputs, ["newTask"]:""});
-        console.log(inputs);
+        //console.log(inputs);
     }  
 
 

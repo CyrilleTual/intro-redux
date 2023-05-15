@@ -1,4 +1,7 @@
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { itIsDone } from '../../store/slices/product';
+
 import Form from '../Form';
 
 function Home() {
@@ -8,22 +11,25 @@ function Home() {
     }));
 
     // au click on change l'état de la tache -> done 
+    const dispatch = useDispatch();
 
-    const isDone = (title) => {
-        console.log ( "tack done : ", title)
+    const done = (polo) => {
+        //console.log ( "tack done : ", polo)
+        dispatch (itIsDone(polo));
     }
 
 
     
   return (
-      <>
+    <>
       <div>My ToDoList : </div>
       <ul>
-        {console.log("titiooo", list)}
         {list.map((item, i) => (
           <li key={i}>
-            {" "}
-            {item.title} <button onClick={ () => isDone(item.title)}>task done</button>
+             
+            {item.title}
+            <button onClick={() => done(item.title)}>task done</button>
+            {item.isDone ? " c'est fait " : " to do"}
           </li>
         ))}
       </ul>

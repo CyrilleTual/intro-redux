@@ -18,7 +18,6 @@ function Home() {
         dispatch (itIsDone(polo));
     }
 
-
     
   return (
     <>
@@ -26,9 +25,14 @@ function Home() {
       <ul>
         {list.map((item, i) => (
           <li key={i}>
-             
-            {item.title}
-            <button onClick={() => done(item.title)}>task done</button>
+
+            {item.isDone ? <span style={{ textDecoration: "line-through" }}>{item.title}</span> : <span>{item.title}</span>}
+
+  
+
+            <button onClick={() => done(item.title)}>
+              {item.isDone ? " Redo " : " task done "}
+            </button>
             {item.isDone ? " c'est fait " : " to do"}
           </li>
         ))}

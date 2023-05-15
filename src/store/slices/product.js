@@ -4,11 +4,18 @@ const initialState = {
   // list : ["toto", "titi"],
   list: [
     {
+      id: 0,
       title: "sauver le monde",
       isDone: false,
     },
     {
+      id: 1,
       title: "décrocher la lune",
+      isDone: false,
+    },
+    {
+      id: 2,
+      title: "Grimper l'Everest",
       isDone: false,
     },
   ],
@@ -30,14 +37,20 @@ export const productSlice = createSlice({
       state.list = [];
     },
 
+    // itIsDone: (state, action) => {
+    //   state.list.map((elet) => {
+    //     if (elet.title === action.payload) elet.isDone = !elet.isDone;
+    //   });
+    // },
     itIsDone: (state, action) => {
-      state.list.map((elet) => {
-        if (elet.title === action.payload) elet.isDone = !elet.isDone;
-      });
+        // recherche de l'index de l'item 
+        let myIndex = state.list.map((item) =>item.title).indexOf(action.payload) ;
+        console.log (myIndex);
+        state.list[myIndex].isDone = !state.list[myIndex].isDone
     },
   },
 });
 
-export const {add, newList, deleteAll, itIsDone} = productSlice.actions;
+export const { add, newList, deleteAll, itIsDone } = productSlice.actions;
 
-export default productSlice.reducer; 
+export default productSlice.reducer;
